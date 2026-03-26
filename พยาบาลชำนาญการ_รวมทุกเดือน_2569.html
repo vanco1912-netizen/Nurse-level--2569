@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>รายชื่อพยาบาลที่มีสิทธิ์ยื่นประเมินผลงานวิชาชีพ — ปี 2569</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #1a5fa8; --blue2: #2172c4; --accent: #e8f2fc;
+  --gold: #c47f0a; --gold-bg: #fef7e6;
+  --green: #0f7a52; --green-bg: #e6f6f0;
+  --orange: #b94a00; --orange-bg: #fff0e6;
+  --purple: #6d28d9; --purple-bg: #f3f0ff;
+  --gray1: #f5f6f8; --gray2: #e8eaed; --gray3: #9aa3ae;
+  --text: #1c2333; --text2: #4a5568; --white: #ffffff;
+  --shadow: 0 2px 12px rgba(26,95,168,.10);
+  --radius: 10px;
+}
+body { font-family: 'Sarabun', sans-serif; background: #eef2f7; color: var(--text); min-height: 100vh; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0d3f78 0%, #1a5fa8 55%, #2172c4 100%);
+  color: #fff; padding: 28px 24px 20px;
+  position: sticky; top: 0; z-index: 200;
+  box-shadow: 0 3px 16px rgba(13,63,120,.3);
+}
+.header-inner { max-width: 960px; margin: auto; }
+.header-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+  border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: .5px;
+  padding: 4px 12px; margin-bottom: 10px;
+}
+.header-badge::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%;
+  background: #6efab3; animation: pulse 1.8s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+.header h1 { font-size: clamp(15px, 3.2vw, 20px); font-weight: 700; line-height: 1.4; margin-bottom: 4px; }
+.header-sub { font-size: 13px; opacity: .75; }
+
+/* Stats */
+.stats-bar { background: var(--white); border-bottom: 1px solid var(--gray2); padding: 14px 24px; }
+.stats-inner { max-width: 960px; margin: auto; display: flex; gap: 20px; flex-wrap: wrap; align-items: center; }
+.stat-item { display: flex; align-items: baseline; gap: 6px; }
+.stat-num { font-size: 22px; font-weight: 700; color: var(--blue); }
+.stat-label { font-size: 12px; color: var(--gray3); }
+.stat-divider { width: 1px; height: 28px; background: var(--gray2); }
+
+/* Month tabs */
+.month-nav { background: var(--white); border-bottom: 1px solid var(--gray2); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.month-nav-inner { max-width: 960px; margin: auto; display: flex; padding: 0 16px; gap: 0; min-width: max-content; }
+.month-tab {
+  padding: 12px 18px; font-size: 13px; font-weight: 500; font-family: 'Sarabun', sans-serif;
+  color: var(--gray3); border: none; background: none; cursor: pointer;
+  border-bottom: 3px solid transparent; transition: all .18s; white-space: nowrap;
+  position: relative;
+}
+.month-tab .tab-count {
+  display: inline-block; background: var(--gray2); color: var(--text2);
+  border-radius: 10px; font-size: 11px; padding: 1px 7px; margin-left: 6px;
+  font-weight: 600; transition: all .18s;
+}
+.month-tab:hover { color: var(--blue2); }
+.month-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+.month-tab.active .tab-count { background: var(--accent); color: var(--blue); }
+
+/* Toolbar */
+.toolbar { max-width: 960px; margin: 18px auto 0; padding: 0 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+.search-wrap { flex: 1; min-width: 200px; position: relative; }
+.search-wrap svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: .4; pointer-events: none; }
+.search-wrap input {
+  width: 100%; padding: 9px 14px 9px 36px;
+  border: 1.5px solid var(--gray2); border-radius: var(--radius);
+  font-family: 'Sarabun', sans-serif; font-size: 14px;
+  background: var(--white); color: var(--text); outline: none; transition: border-color .2s;
+}
+.search-wrap input:focus { border-color: var(--blue2); }
+.search-wrap input::placeholder { color: var(--gray3); }
+select {
+  padding: 9px 36px 9px 14px; border: 1.5px solid var(--gray2); border-radius: var(--radius);
+  font-family: 'Sarabun', sans-serif; font-size: 13px;
+  background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239aa3ae' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 12px center;
+  color: var(--text2); outline: none; cursor: pointer; appearance: none; transition: border-color .2s;
+}
+select:focus { border-color: var(--blue2); }
+
+/* Dept chips */
+.dept-chips { max-width: 960px; margin: 10px auto 0; padding: 0 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+.dept-chip {
+  font-size: 11px; padding: 4px 12px; border-radius: 20px; cursor: pointer;
+  border: 1.5px solid transparent; transition: all .15s;
+  background: var(--white); color: var(--text2); box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  font-family: 'Sarabun', sans-serif;
+}
+.dept-chip.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.dept-chip:hover:not(.active) { border-color: var(--blue); color: var(--blue); }
+
+/* Result count */
+.result-count { max-width: 960px; margin: 10px auto 0; padding: 0 16px; font-size: 12px; color: var(--gray3); }
+
+/* Cards */
+.cards {
+  max-width: 960px; margin: 10px auto 32px; padding: 0 16px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 14px;
+}
+.card {
+  background: var(--white); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 16px 18px;
+  border-left: 4px solid var(--blue);
+  display: flex; flex-direction: column; gap: 8px;
+  transition: transform .15s, box-shadow .15s;
+  animation: fadeIn .22s ease both;
+}
+.card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,95,168,.15); }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.card-top { display: flex; align-items: center; gap: 10px; }
+.avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; font-weight: 700; flex-shrink: 0;
+}
+.card-name { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+.card-pos { font-size: 12px; color: var(--gray3); }
+.card-dept { font-size: 12px; border-radius: 6px; padding: 4px 10px; line-height: 1.4; }
+.card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 2px; flex-wrap: wrap; gap: 4px; }
+.date-chip { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+.pos-num { font-size: 11px; color: var(--gray3); }
+.note-chip { font-size: 11px; border-radius: 6px; padding: 4px 8px; line-height: 1.4; margin-top: 2px; }
+.month-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+  letter-spacing: .3px; align-self: flex-start;
+}
+.empty { grid-column: 1/-1; text-align: center; padding: 48px 20px; color: var(--gray3); font-size: 14px; }
+.footer { text-align: center; padding: 16px; font-size: 11px; color: var(--gray3); }
+
+@media (max-width: 500px) {
+  .header { padding: 20px 16px; }
+  .cards { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-badge">Live · รวมทุกรอบการประเมิน ปี 2569</div>
+    <h1>รายชื่อพยาบาลที่มีสิทธิ์ยื่นประเมินผลงานวิชาชีพ<br>ตำแหน่ง พยาบาลชำนาญการ</h1>
+    <div class="header-sub">กลุ่มงานการพยาบาล · ปีงบประมาณ 2569 · รวมทุกรอบ</div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num" id="total-shown">70</span>
+      <span class="stat-label">รายชื่อที่แสดง</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num">5</span>
+      <span class="stat-label">รอบการประเมิน</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num" id="dept-count">—</span>
+      <span class="stat-label">กลุ่มงาน</span>
+    </div>
+  </div>
+</div>
+
+<!-- Month tabs -->
+<div class="month-nav">
+  <div class="month-nav-inner">
+    <button class="month-tab active" data-month="all" onclick="setMonth('all',this)">ทั้งหมด <span class="tab-count">70</span></button>
+    <button class="month-tab" data-month="เมษายน" onclick="setMonth('เมษายน',this)">เมษายน <span class="tab-count">19</span></button>
+    <button class="month-tab" data-month="มิถุนายน" onclick="setMonth('มิถุนายน',this)">มิถุนายน <span class="tab-count">12</span></button>
+    <button class="month-tab" data-month="กรกฎาคม" onclick="setMonth('กรกฎาคม',this)">กรกฎาคม <span class="tab-count">28</span></button>
+    <button class="month-tab" data-month="สิงหาคม" onclick="setMonth('สิงหาคม',this)">สิงหาคม <span class="tab-count">6</span></button>
+    <button class="month-tab" data-month="ตกค้าง" onclick="setMonth('ตกค้าง',this)">ตกค้างยกมา <span class="tab-count">5</span></button>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="search" placeholder="ค้นหาชื่อ-สกุล..." autocomplete="off">
+  </div>
+  <select id="dept-filter"><option value="">กลุ่มงานทั้งหมด</option></select>
+</div>
+
+<div class="dept-chips" id="chips"></div>
+<div class="result-count" id="result-count"></div>
+<div class="cards" id="cards"></div>
+<div class="footer">ข้อมูล ณ ปีงบประมาณ 2569 · งานการเจ้าหน้าที่ กลุ่มงานทรัพยากรบุคคล</div>
+
+<script>
+const MONTH_COLORS = {
+  'เมษายน':  { border:'#1a5fa8', badge:'#e8f2fc', badgeText:'#1a5fa8', deptBg:'#e8f2fc', deptText:'#1a5fa8' },
+  'มิถุนายน': { border:'#0f7a52', badge:'#e6f6f0', badgeText:'#0f7a52', deptBg:'#e6f6f0', deptText:'#0f7a52' },
+  'กรกฎาคม': { border:'#6d28d9', badge:'#f3f0ff', badgeText:'#6d28d9', deptBg:'#f3f0ff', deptText:'#6d28d9' },
+  'สิงหาคม':  { border:'#b94a00', badge:'#fff0e6', badgeText:'#b94a00', deptBg:'#fff0e6', deptText:'#b94a00' },
+  'ตกค้าง':   { border:'#9aa3ae', badge:'#f5f6f8', badgeText:'#4a5568', deptBg:'#f5f6f8', deptText:'#4a5568' },
+};
+
+const nurses = [
+  // ─── เมษายน 2569 ───
+  {m:'เมษายน', no:1,  prefix:'นางสาว', fname:'สิริวิมล',   lname:'บุญมา',              dept:'กลุ่มงานการพยาบาลผู้ป่วยออร์โธปิดิกส์',       pos:'211904', date:'2569-04-01'},
+  {m:'เมษายน', no:2,  prefix:'นางสาว', fname:'นิธิกานต์',  lname:'คำกระจาย',           dept:'กลุ่มงานการพยาบาลผู้ป่วยนอก',                pos:'78535',  date:'2569-04-01'},
+  {m:'เมษายน', no:3,  prefix:'นางสาว', fname:'สุจิตรา',    lname:'ไชยานุกูล',          dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',          pos:'79171',  date:'2569-04-01'},
+  {m:'เมษายน', no:4,  prefix:'นางสาว', fname:'อลิสรา',     lname:'ศุภกิจ',             dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',               pos:'206333', date:'2569-04-01'},
+  {m:'เมษายน', no:5,  prefix:'นางสาว', fname:'ศศิธร',      lname:'ด้วงนิล',            dept:'กลุ่มงานการพยาบาลผู้ป่วยสูติ-นรีเวช',        pos:'78989',  date:'2569-04-01'},
+  {m:'เมษายน', no:6,  prefix:'นางสาว', fname:'ชนนิกานต์',  lname:'สิมพงษ์',            dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',           pos:'78949',  date:'2569-04-01'},
+  {m:'เมษายน', no:7,  prefix:'นางสาว', fname:'กชกร',       lname:'โทนุวงศ์',           dept:'กลุ่มงานการพยาบาลผู้ป่วยออร์โธปิดิกส์',      pos:'78970',  date:'2569-04-01'},
+  {m:'เมษายน', no:8,  prefix:'นางสาว', fname:'สินีกร',     lname:'ชาลี',               dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',          pos:'79122',  date:'2569-04-01'},
+  {m:'เมษายน', no:9,  prefix:'นางสาว', fname:'ธนาวดี',     lname:'(เสมพิมาย) สุดโสม', dept:'กลุ่มงานการพยาบาลตรวจรักษาพิเศษ',            pos:'78943',  date:'2569-04-01'},
+  {m:'เมษายน', no:10, prefix:'นางสาว', fname:'แสงนภา',     lname:'แสงห้าว',            dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',          pos:'79004',  date:'2569-04-01'},
+  {m:'เมษายน', no:11, prefix:'นางสาว', fname:'พรพิมล',     lname:'ขาวอ่อน',            dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',          pos:'230920', date:'2569-04-01'},
+  {m:'เมษายน', no:12, prefix:'นางสาว', fname:'สุชาวดี',    lname:'ปิ่นประยูร',         dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',               pos:'78972',  date:'2569-04-01'},
+  {m:'เมษายน', no:13, prefix:'นางสาว', fname:'ปฏิณญา',     lname:'ดวงศรี',             dept:'กลุ่มงานการพยาบาลผู้ป่วย โสต ศอ นาสิก จักษุ', pos:'79009', date:'2569-04-01'},
+  {m:'เมษายน', no:14, prefix:'นางสาว', fname:'สุธิศา',     lname:'สาริโก',             dept:'กลุ่มงานการพยาบาลผู้ป่วยสูติ-นรีเวช',        pos:'79183',  date:'2569-04-01'},
+  {m:'เมษายน', no:15, prefix:'นางสาว', fname:'จิรันตน์',   lname:'ยืนยาว',             dept:'กลุ่มงานการพยาบาลผู้ป่วยกุมารเวชกรรม',       pos:'78649',  date:'2569-04-01'},
+  {m:'เมษายน', no:16, prefix:'นางสาว', fname:'กนกอร',      lname:'สุตัญตั้งใจ',        dept:'กลุ่มงานการพยาบาลผู้ป่วยนอก',                pos:'78986',  date:'2569-04-01'},
+  {m:'เมษายน', no:17, prefix:'นางสาว', fname:'ภาวิณี',     lname:'นนทสิงห์',           dept:'กลุ่มงานการพยาบาลผู้ป่วยนอก',                pos:'78653',  date:'2569-04-01'},
+  {m:'เมษายน', no:18, prefix:'นางสาว', fname:'ศศิประภา',   lname:'เศรษฐรัตน์',         dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',               pos:'78889',  date:'2569-04-01'},
+  {m:'เมษายน', no:19, prefix:'นาย',    fname:'ศรวิษฐ์',    lname:'สุธารัตน์',          dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',           pos:'199878', date:'2569-04-16', note:'บรรจุ รพ.ราชวิถี ย้ายมา รพ.สปส. 1 ส.ค. 2567'},
+  // ─── มิถุนายน 2569 ───
+  {m:'มิถุนายน', no:1,  prefix:'นางสาว', fname:'เสาวลักษณ์', lname:'ภารพัฒน์',   dept:'กลุ่มงานการพยาบาลผู้ป่วย โสต ศอ นาสิก จักษุ', pos:'228750', date:'2569-06-29'},
+  {m:'มิถุนายน', no:2,  prefix:'นางสาว', fname:'จิรวดี',     lname:'พูลภาพ',     dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',               pos:'228817', date:'2569-06-29'},
+  {m:'มิถุนายน', no:3,  prefix:'นางสาว', fname:'บุษราคัม',   lname:'นามยุดา',    dept:'กลุ่มงานการพยาบาลผู้ป่วยห้องผ่าตัด',         pos:'228872', date:'2569-06-29'},
+  {m:'มิถุนายน', no:4,  prefix:'นางสาว', fname:'นริศรา',     lname:'พรหมดี',     dept:'กลุ่มงานการพยาบาลผู้ป่วยกุมารเวชกรรม',       pos:'228791', date:'2569-06-29'},
+  {m:'มิถุนายน', no:5,  prefix:'นางสาว', fname:'ชนิกานต์',   lname:'บุญเสริม',   dept:'กลุ่มงานการพยาบาลผู้ป่วยออร์โธปิดิกส์',     pos:'228754', date:'2569-06-29'},
+  {m:'มิถุนายน', no:6,  prefix:'นางสาว', fname:'ชุติมา',     lname:'วงค์คำจันทร์', dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',       pos:'228858', date:'2569-06-29'},
+  {m:'มิถุนายน', no:7,  prefix:'นางสาว', fname:'ศิริพร',     lname:'กัณหา',      dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',         pos:'228828', date:'2569-06-29'},
+  {m:'มิถุนายน', no:8,  prefix:'นางสาว', fname:'นันทพร',     lname:'บุญเฉลียว',  dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',         pos:'228905', date:'2569-06-29'},
+  {m:'มิถุนายน', no:9,  prefix:'นางสาว', fname:'รัตนา',      lname:'พลแก้ว',     dept:'กลุ่มงานการพยาบาลผู้ป่วยสูติ-นรีเวช',      pos:'228745', date:'2569-06-29'},
+  {m:'มิถุนายน', no:10, prefix:'นางสาว', fname:'ณัฐวดี',     lname:'ภาเรือง',    dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',         pos:'228930', date:'2569-06-29', note:'บรรจุ รพ.วารินชำราบ ย้ายมา สปส. 10 ต.ค. 66'},
+  {m:'มิถุนายน', no:11, prefix:'นางสาว', fname:'เสาวลักษณ์', lname:'ปานใหม่',    dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',         pos:'189869', date:'2569-06-29', note:'บรรจุ รพ.โนไทย สสจ.โคราช ย้ายมา สปส. 19 ธ.ค. 67'},
+  {m:'มิถุนายน', no:12, prefix:'นาง',    fname:'นภาลัย',     lname:'นาคำมูล',    dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',               pos:'199826', date:'2569-06-29', note:'บรรจุ รพ.สว่างแดนดิน ย้ายมา สปส. 6 ส.ค. 68'},
+  // ─── กรกฎาคม 2569 ───
+  {m:'กรกฎาคม', no:1,  prefix:'นางสาว', fname:'สุดารัตน์',  lname:'ศิริบูรณ์',        dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',         pos:'78944',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:2,  prefix:'นางสาว', fname:'กรรติยา',    lname:'เจริญรัมย์',       dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',             pos:'78795',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:3,  prefix:'นางสาว', fname:'ปภัสรา',     lname:'จันทะวงค์',        dept:'กลุ่มงานการพยาบาลผู้ป่วยห้องผ่าตัด',       pos:'76886',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:4,  prefix:'นางสาว', fname:'อภิญญา',     lname:'การินทร์',          dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',             pos:'76370',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:5,  prefix:'นางสาว', fname:'ขนิษฐา',     lname:'ขจรเกียรติศักดิ์', dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',       pos:'78947',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:6,  prefix:'นางสาว', fname:'ณิชากร',     lname:'คณาพันธ์',          dept:'กลุ่มงานการพยาบาลผู้ป่วยนอก',              pos:'78750',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:7,  prefix:'นางสาว', fname:'ธิดารัตน์',  lname:'สิงห์นิยม',        dept:'กลุ่มงานการพยาบาลผู้ป่วยออร์โธปิดิกส์',   pos:'78884',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:8,  prefix:'นางสาว', fname:'นภัสสร',     lname:'จรุงพันธ์',         dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',       pos:'79036',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:9,  prefix:'นางสาว', fname:'นิภาพร',     lname:'กัลป์ยาณมิตร',     dept:'กลุ่มงานการพยาบาลผู้ป่วยสูติ-นรีเวช',    pos:'79086',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:10, prefix:'นางสาว', fname:'บุษรา',       lname:'ศรีสังวาลย์',      dept:'กลุ่มงานการพยาบาลตรวจรักษาพิเศษ',          pos:'79154',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:11, prefix:'นางสาว', fname:'ปริชาติ',     lname:'จันทะพงษ์',        dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',             pos:'79179',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:12, prefix:'นางสาว', fname:'พัทธนันท์',  lname:'สุขเกษม',           dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',         pos:'79210',  date:'2569-07-20'},
+  {m:'กรกฎาคม', no:13, prefix:'นางสาว', fname:'ภัทรภร',     lname:'เจนวิทย์',          dept:'กลุ่มงานการพยาบาลผู้ป่วยกุมารเวชกรรม',     pos:'154092', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:14, prefix:'นางสาว', fname:'มณีรัตน์',   lname:'บุญสิทธิ์',        dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',       pos:'154156', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:15, prefix:'นางสาว', fname:'ยลดา',        lname:'ขจรศิลป์',          dept:'กลุ่มงานการพยาบาลผู้ป่วยห้องผ่าตัด',       pos:'154168', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:16, prefix:'นางสาว', fname:'รุจิรา',      lname:'จิตมาตย์',          dept:'กลุ่มงานการพยาบาลผู้ป่วยนอก',              pos:'154204', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:17, prefix:'นางสาว', fname:'ลัดดาวัลย์', lname:'ปัทมานนท์',         dept:'กลุ่มงานการพยาบาลผู้ป่วยออร์โธปิดิกส์',   pos:'154220', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:18, prefix:'นางสาว', fname:'วรรณภา',     lname:'ศรีลาชัย',          dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',         pos:'154244', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:19, prefix:'นางสาว', fname:'วาสนา',       lname:'บุญประเสริฐ',       dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',       pos:'154256', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:20, prefix:'นางสาว', fname:'ศิรประภา',    lname:'พลรักษา',           dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',             pos:'154268', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:21, prefix:'นางสาว', fname:'สุนิสา',      lname:'หนองบัว',           dept:'กลุ่มงานการพยาบาลผู้ป่วยสูติ-นรีเวช',    pos:'154272', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:22, prefix:'นางสาว', fname:'อภิสรา',      lname:'จันทาคำ',           dept:'กลุ่มงานการพยาบาลผู้ป่วยกุมารเวชกรรม',     pos:'154276', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:23, prefix:'นาง',    fname:'จิตรลดา',     lname:'บุญเพ็ง',           dept:'กลุ่มงานการพยาบาลผู้คลอด',                 pos:'154280', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:24, prefix:'นางสาว', fname:'ชัญญา',       lname:'อุทธาพงษ์',         dept:'กลุ่มงานการพยาบาลผู้ป่วยห้องผ่าตัด',       pos:'154260', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:25, prefix:'นางสาว', fname:'ทิพวรรณ',     lname:'คงวิเชียร',         dept:'กลุ่มงานการพยาบาลผู้ป่วยอุบัติเหตุและฉุกเฉิน', pos:'154264', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:26, prefix:'นางสาว', fname:'ณัฐชยา',      lname:'พันธุ์เพ็ง',        dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',             pos:'154280', date:'2569-07-20'},
+  {m:'กรกฎาคม', no:27, prefix:'นางสาว', fname:'ฐิตารีย์',    lname:'ธนาพัฒน์ภาวัต',    dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',             pos:'178870', date:'2569-07-20', note:'ชื่อเดิม จันทร์กมล นามสกุลเดิม คำทา'},
+  {m:'กรกฎาคม', no:28, prefix:'นางสาว', fname:'จารุวรรณ',    lname:'จันทาป',            dept:'กลุ่มงานการพยาบาลผู้คลอด',                 pos:'79060',  date:'2569-07-20'},
+  // ─── สิงหาคม 2569 ───
+  {m:'สิงหาคม', no:1, prefix:'นางสาว', fname:'เกษกมล',   lname:'โสณะชัย',        dept:'กลุ่มงานการพยาบาลผู้ป่วยออร์โธปิดิกส์', pos:'79229',  date:'2569-08-31'},
+  {m:'สิงหาคม', no:2, prefix:'นางสาว', fname:'เพ็ญนภา',  lname:'โมลานิล',        dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',         pos:'230935', date:'2569-08-31'},
+  {m:'สิงหาคม', no:3, prefix:'นางสาว', fname:'ณัฐริยา',  lname:'กุลแก้ว',        dept:'กลุ่มงานการพยาบาลผู้ป่วยอายุรกรรม',   pos:'78941',  date:'2569-08-31'},
+  {m:'สิงหาคม', no:4, prefix:'นางสาว', fname:'สิริมา',   lname:'บุตรพรม',        dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',         pos:'230928', date:'2569-08-31'},
+  {m:'สิงหาคม', no:5, prefix:'นางสาว', fname:'จุฑามาศ',  lname:'แก้วบุญเรือง',   dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',         pos:'78783',  date:'2569-08-31'},
+  {m:'สิงหาคม', no:6, prefix:'นางสาว', fname:'จริยา',    lname:'ลาพ้น',          dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',         pos:'230923', date:'2569-08-31', note:'นามสกุลเดิม แสวงศรี'},
+  // ─── ตกค้างยกมา ───
+  {m:'ตกค้าง', no:1, prefix:'นางสาว', fname:'สาวิตรี',  lname:'ทองภู',          dept:'กลุ่มงานการพยาบาลผู้ป่วยหนัก',                      pos:'199829', date:'2564-11-18', note:'บรรจุ รพ.ค้อวัง สสจ.ยโสธร ย้ายมา สปส. 1 ส.ค. 66'},
+  {m:'ตกค้าง', no:2, prefix:'นางสาว', fname:'กชอร',     lname:'โพศาขา',         dept:'กลุ่มงานวิจัยและพัฒนาการพยาบาล (งานการพยาบาลชุมชน)', pos:'50731',  date:'2564-01-26', note:'บรรจุ รพ.มหาสารคาม ย้ายมา รพ.สปส. 1 ส.ค. 2564 (กำลังทำ)'},
+  {m:'ตกค้าง', no:3, prefix:'นางสาว', fname:'พัชรา',    lname:'ส่งเสริม',       dept:'งานเวชปฏิบัติครอบครัวและชุมชน กลุ่มงานเวชกรรมสังคม', pos:'78196',  date:'2563-03-24', note:'บรรจุตั้งแต่ 24 มี.ค. 2551 (ไม่ทราบว่าจะทำหรือเปล่า)'},
+  {m:'ตกค้าง', no:4, prefix:'นางสาว', fname:'เจนจิรา',  lname:'ซึมกระโทก',      dept:'กลุ่มงานการพยาบาลผู้ป่วยอุบัติเหตุและฉุกเฉิน',      pos:'78495',  date:'2568-06-24', note:'บรรจุ 29 มิ.ย. 2563 ย้ายมาจาก รพ.เสิงสาง สสจ.โคราช 1 ส.ค. 2568 (เจ้าตัวกำลังทำ)'},
+  {m:'ตกค้าง', no:5, prefix:'นาย',    fname:'ธนัชชา',   lname:'จิรทีปธนวัฒน์',  dept:'กลุ่มงานการพยาบาลผู้ป่วยศัลยกรรม',                  pos:'78659',  date:'2569-02-25', note:'เคยเป็น จพ.สาธารณสุข ครบ 25 ก.พ. 2569 (ปัจจุบันไปเป็นอาจารย์ที่ ว.บรม)'},
+];
+
+// Build dept list
+const depts = [...new Set(nurses.map(n => n.dept))].sort();
+const deptColors = {};
+const palette = ['#1a5fa8','#0f7a52','#6d28d9','#b94a00','#0e7490','#9f1239','#065f46','#7e22ce','#b91c1c','#155e75','#374151','#78350f','#1e3a5f','#4c1d95','#166534'];
+depts.forEach((d, i) => { deptColors[d] = palette[i % palette.length]; });
+
+// Populate select + chips
+const selectEl = document.getElementById('dept-filter');
+const chipsEl  = document.getElementById('chips');
+document.getElementById('dept-count').textContent = depts.length;
+
+depts.forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d;
+  opt.textContent = d.replace('กลุ่มงานการพยาบาล','').trim();
+  selectEl.appendChild(opt);
+});
+
+const allChip = document.createElement('div');
+allChip.className = 'dept-chip active'; allChip.textContent = 'ทั้งหมด'; allChip.dataset.dept = '';
+chipsEl.appendChild(allChip);
+depts.forEach(d => {
+  const c = document.createElement('div');
+  c.className = 'dept-chip';
+  c.textContent = d.replace('กลุ่มงานการพยาบาล','').replace('ผู้ป่วย','').trim();
+  c.dataset.dept = d; chipsEl.appendChild(c);
+});
+
+// State
+let activeMonth = 'all', activeDept = '', searchVal = '';
+
+function setMonth(m, el) {
+  activeMonth = m;
+  document.querySelectorAll('.month-tab').forEach(t => t.classList.toggle('active', t === el));
+  render();
+}
+
+function formatDate(d) {
+  const [y, mo, day] = d.split('-');
+  const months = ['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+  return `${parseInt(day)} ${months[parseInt(mo)]} ${y}`;
+}
+
+function render() {
+  const q = searchVal.toLowerCase();
+  const filtered = nurses.filter(n => {
+    const name = (n.prefix + n.fname + n.lname).toLowerCase();
+    return (!q || name.includes(q)) &&
+           (activeMonth === 'all' || n.m === activeMonth) &&
+           (!activeDept || n.dept === activeDept);
+  });
+
+  document.getElementById('total-shown').textContent = filtered.length;
+  document.getElementById('result-count').textContent =
+    filtered.length === nurses.length
+      ? `แสดงทั้งหมด ${filtered.length} ราย`
+      : `แสดง ${filtered.length} จาก ${nurses.length} ราย`;
+
+  const cardsEl = document.getElementById('cards');
+  cardsEl.innerHTML = '';
+
+  if (!filtered.length) {
+    cardsEl.innerHTML = '<div class="empty">ไม่พบรายชื่อที่ค้นหา</div>';
+    return;
+  }
+
+  filtered.forEach((n, i) => {
+    const mc = MONTH_COLORS[n.m];
+    const dc = deptColors[n.dept] || '#1a5fa8';
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.style.animationDelay = Math.min(i * 0.03, 0.5) + 's';
+    card.style.borderLeftColor = mc.border;
+
+    const isOldDate = parseInt(n.date.split('-')[0]) < 2569;
+    const dateClass = n.m === 'ตกค้าง' ? 'date-chip' : 'date-chip';
+    const dateBg = n.m === 'ตกค้าง' ? '#f5f6f8' : mc.badge;
+    const dateColor = n.m === 'ตกค้าง' ? '#4a5568' : mc.badgeText;
+
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2px">
+        <span class="month-badge" style="background:${mc.badge};color:${mc.badgeText}">${n.m} 2569</span>
+        <span class="pos-num">ลำดับ ${n.no}</span>
+      </div>
+      <div class="card-top">
+        <div class="avatar" style="background:${dc}18;color:${dc}">${n.fname.charAt(0)}</div>
+        <div>
+          <div class="card-name">${n.prefix}${n.fname} ${n.lname}</div>
+          <div class="card-pos">เลขตำแหน่ง ${n.pos}</div>
+        </div>
+      </div>
+      <div class="card-dept" style="background:${dc}15;color:${dc}">${n.dept}</div>
+      <div class="card-meta">
+        <div class="date-chip" style="background:${dateBg};color:${dateColor}">มีผล ${formatDate(n.date)}</div>
+      </div>
+      ${n.note ? `<div class="note-chip" style="background:#fef7e6;color:#b45309">${n.note}</div>` : ''}
+    `;
+    cardsEl.appendChild(card);
+  });
+}
+
+// Events
+document.getElementById('search').addEventListener('input', e => { searchVal = e.target.value; render(); });
+selectEl.addEventListener('change', e => {
+  activeDept = e.target.value;
+  document.querySelectorAll('.dept-chip').forEach(c => c.classList.toggle('active', c.dataset.dept === activeDept));
+  render();
+});
+chipsEl.addEventListener('click', e => {
+  const chip = e.target.closest('.dept-chip');
+  if (!chip) return;
+  activeDept = chip.dataset.dept;
+  document.querySelectorAll('.dept-chip').forEach(c => c.classList.toggle('active', c === chip));
+  selectEl.value = activeDept;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
